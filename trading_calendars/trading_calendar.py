@@ -850,9 +850,8 @@ class TradingCalendar(with_metaclass(ABCMeta)):
         pd.Timestamp (midnight UTC)
             The label of the containing session.
         """
-        if direction == "next":
-            if self._minute_to_session_label_cache[0] == dt:
-                return self._minute_to_session_label_cache[1]
+        if direction == "next" and self._minute_to_session_label_cache[0] == dt:
+            return self._minute_to_session_label_cache[1]
 
         idx = searchsorted(self.market_closes_nanos, dt)
         current_or_next_session = self.schedule.index[idx]

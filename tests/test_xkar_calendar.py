@@ -92,8 +92,8 @@ class XKARCalendarTestCase(NoDSTExchangeCalendarTestBase, TestCase):
             # The datetime wrapper is required for Pandas 0.18.1
             iqbal_day = pd.Timestamp(datetime(year=year, month=11, day=9))
             is_session = self.calendar.is_session(iqbal_day)
-            is_weekend = iqbal_day.dayofweek in WEEKENDS
             if year <= 2013:
                 self.assertFalse(is_session, iqbal_day)
             else:
+                is_weekend = iqbal_day.dayofweek in WEEKENDS
                 self.assertTrue(is_session or is_weekend, iqbal_day)
