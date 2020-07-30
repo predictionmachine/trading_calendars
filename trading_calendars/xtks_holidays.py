@@ -22,12 +22,8 @@ def is_holiday_or_weekend(holidays, dt):
     """
     one_day = timedelta(days=1)
 
-    for h in holidays:
-        if dt in h.dates(dt - one_day, dt + one_day) or \
-                dt.weekday() in WEEKENDS:
-            return True
-
-    return False
+    return any(dt in h.dates(dt - one_day, dt + one_day) or \
+                dt.weekday() in WEEKENDS for h in holidays)
 
 
 def next_non_holiday_weekday(holidays, dt):

@@ -74,8 +74,7 @@ class XHELCalendarTestCase(ExchangeCalendarTestBase, TestCase):
         ]
 
         for session_label in expected_sessions:
-            self.assertIn(session_label, self.calendar.all_sessions)
-
+            self.assertIn(session_label, all_sessions)
         # In 2017, June 18 fell on a Sunday, so the following Friday should be
         # a holiday.
         self.assertNotIn(pd.Timestamp('2017-06-23', tz=UTC), all_sessions)
